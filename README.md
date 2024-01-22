@@ -1,4 +1,4 @@
-# devops_training
+# Model Summary
 
 #Create project scaffold
 
