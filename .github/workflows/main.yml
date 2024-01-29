@@ -25,9 +25,33 @@ jobs:
        run: |
          make format
          
-     - name: Build Docker image
-       run: docker build -t my-app-gui -f Dockerfile.gui .
+    #  - name: Build Docker image
+    #    run: docker build -t my-app-gui -f Dockerfile.gui .
 
-     - name: Run tests in Docker container
-       run: docker build -t my-app-ml -f Dockerfile.ml .
+    #  - name: Run tests in Docker container
+    #    run: docker build -t my-app-ml -f Dockerfile.ml .
+          # Build Docker images for ML app and GUI app
+      - name: Build ML App Docker Image
+        run: docker build -t my-app-ml -f Dockerfile.ml .
+
+      - name: Build GUI App Docker Image
+        run: docker build -t my-app-gui -f Dockerfile.gui .
+
+      # Run MySQL Database container using official image
+      - name: Run MySQL Database Container
+        run: |
+          docker run -d --name db-app -e MYSQL_ROOT_PASSWORD=iforcom1456 -e MYSQL_DATABASE=iforcom1456 -p 3306:3306 mysql:latest
+
+      # Run ML App and GUI App containers
+      - name: Run ML App Container
+        run: docker run -d --name ml-app my-app-ml
+
+      - name: Run GUI App Container
+        run: docker run -d --name gui-app -p 5000:5000 my-app-gui
+
+      # Cleanup: Stop and remove containers
+      - name: Cleanup
+        run: |
+          docker stop ml-app db-app gui-app
+          docker rm ml-app db-app gui-app
 
