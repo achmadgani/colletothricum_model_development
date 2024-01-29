@@ -1,0 +1,12 @@
+# Use an appropriate base image for your GUI app
+FROM python:3.8
+
+# Install dependencies (example for a PyQt app)
+RUN pip install pyqt5
+
+# Copy your GUI app source code to the container
+COPY . /app
+WORKDIR /app
+
+# Command to run your app
+CMD ["python", "hello.py"]

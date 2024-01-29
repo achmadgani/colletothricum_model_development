@@ -6,9 +6,9 @@ lint:
 	pylint --disable=R,C *.py
 
 test:
-	python -m pytest -vv --cov=predefinelib test_*.py
+	python -m pytest -vv --cov=predefinelib test_*.py *.ipynb
 
 format:
-	black *.py 
+	black *.py *.ipynb
 
 all:	install		lint	test	format

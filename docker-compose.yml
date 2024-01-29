@@ -1,0 +1,29 @@
+version: '3'
+services:
+  gui-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.gui
+    ports:
+      - "5000:5000" # Expose ports if needed (change accordingly)
+
+  mysql-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: iforcom1456
+      MYSQL_DATABASE: iforcom1456
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  ml-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.ml
+    volumes:
+      - ml-data:/app # If you want to persist data
+
+volumes:
+  mysql-data:
+  ml-data:
