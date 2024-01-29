@@ -16,6 +16,7 @@
  
  1. Create virtual environment virtualenv: virtualenv ~/.venv
  2. edit '~.bashrc'
+ 3. Clone the project and 'make all'
  ### Colab Notebook
  Find the notebook here. [colab](https://github.com/achmadgani/devops_training/blob/main/getting_started.ipynb)
  ### AWS cloudshell
