@@ -26,7 +26,8 @@ jobs:
          make format
          
      - name: Build Docker image
-       run: docker build -t my-app .
+       run: docker build -t my-app-gui -f Dockerfile.gui .
 
      - name: Run tests in Docker container
-       run: docker run my-app make test
+       run: docker build -t my-app-ml -f Dockerfile.ml .
+
