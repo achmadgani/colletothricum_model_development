@@ -24,3 +24,9 @@ jobs:
      - name: Format code with Python Black
        run: |
          make format
+         
+     - name: Build Docker image
+       run: docker build -t my-app .
+
+     - name: Run tests in Docker container
+       run: docker run my-app make test
